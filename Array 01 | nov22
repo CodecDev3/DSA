@@ -1,0 +1,79 @@
+// Coded on 13-11-2022
+
+/*
+Consider a 2-D Matrix (M) with R rows and C number of columns all with positive integer values (duplicates values are also allowed). 
+In Matrix M there exists maximum element represented as 'u' and minimum element represented as 'v'. 
+If u or v present in ith row and jth column, then the respective row and column will be declared as unsafe and all the elements will be turned down to 0. 
+Write a Java Program to find to the number of Safe Elements remaining in the matrix M and display it. 
+Your C program should find the u and v and also it should have the implementation of “unsafe()” method to find the unsafe elements and turn it out to be 0.
+
+For Example:
+
+8 8 3 10
+
+6 1 4 8
+
+12 1 2 6
+
+Max = 12
+
+Min = 1
+
+The total safe elements are 2 and they are 3, 10
+*/
+
+#include <stdio.h>
+
+int main() {
+    int arr[3][4] = {{8,8,3,10},{6,1,4,8},{12,1,2,6}};
+    int i, j;
+    int max = arr[0][0];
+    int min = arr[0][0];
+    for (i=0;i<3;i++){
+        for (j=0;j<4;j++){
+            if (arr[i][j] > max){
+                max = arr[i][j];
+                }
+            if (arr[i][j] < min){
+                min = arr[i][j];
+                }
+        }
+    }
+    for (i=0;i<3;i++){
+        for (j=0;j<4;j++){
+            if (max == arr[i][j]){
+                for (int x = 0; x<3 ; x++){
+                    arr[x][j] = 0;
+                }
+                for (int y = 0; y<4 ; y++){
+                    arr[i][y] = 0;
+                }
+            }
+            if (min == arr[i][j]){
+                for (int x = 0; x<3 ; x++){
+                    arr[x][j] = 0;
+                }
+                for (int y = 0; y<4 ; y++){
+                    arr[i][y] = 0;
+                }
+            }
+        }
+    }
+    int c = 0;
+    for (i=0;i<3;i++){
+        for (j=0;j<4;j++){
+            if (arr[i][j] != 0){
+                c++;
+            }
+        }
+    }
+    printf("%d", c);
+    for (i=0;i<3;i++){
+        for (j=0;j<4;j++){
+            if (arr[i][j] != 0){
+                printf(", %d" , arr[i][j]);
+            }
+        }
+    }
+    return 0;
+}
